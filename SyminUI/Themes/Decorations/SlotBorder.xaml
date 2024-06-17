@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:svd="clr-namespace:SyminUI.Controls.Decorations"
+                    xmlns:cvts="clr-namespace:SyminUI.Convertor.Slot"
+                    xmlns:cvt="clr-namespace:SyminUI.Convertor">
+    <Style TargetType="{x:Type svd:SlotBorder}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Foreground" Value="{StaticResource Text.Main}" />
+        <Setter Property="Background" Value="{StaticResource Background.Main}" />
+        <Setter Property="LightBrush" Value="{StaticResource Shader.Light}" />
+        <Setter Property="ShadowBrush" Value="{StaticResource Shader.Shadow}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Radius" Value="4" />
+        <Setter Property="ShaderEnabled" Value="True" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Intensity" Value="1" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type svd:SlotBorder}">
+                    <ControlTemplate.Resources>
+                        <cvts:CreateClipGeometry x:Key="CCG" />
+                        <cvts:IntensityToBlur x:Key="ITB" />
+                        <cvts:IntensityToMargin x:Key="ITM" />
+                        <cvts:IntensityToShadowMargin x:Key="ITSM"/>
+                        <cvts:IntensityToLightMargin x:Key="ITLM"/>
+                        <cvt:ValueToRadius x:Key="VTR" />
+                        <cvt:BoolToVisibility x:Key="BTV" />
+                    </ControlTemplate.Resources>
+
+                    <Grid>
+                        <!--隐藏阴影的时候呈现背景色-->
+                        <Border Margin="4" 
+                                CornerRadius="{TemplateBinding Radius,Converter={StaticResource VTR}}"
+                                Background="{TemplateBinding Background}" />
+                        <!--内阴影效果-->
+                        <Grid
+                            Visibility="{TemplateBinding ShaderEnabled,
+                            Converter={StaticResource BTV}}">
+                            <!--背景填充-->
+                            <Rectangle Fill="{TemplateBinding Background}"/>
+                            <!--左上阴影-->
+                            <Border CornerRadius="{TemplateBinding Radius,Converter={StaticResource VTR}}"
+                                    Background="{TemplateBinding ShadowBrush}"
+                                    Margin="{TemplateBinding Intensity,Converter={StaticResource ITSM}}" />
+                            <!--右下高亮-->
+                            <Border CornerRadius="{TemplateBinding Radius,Converter={StaticResource VTR}}"
+                                    Background="{TemplateBinding LightBrush}"
+                                    Margin="{TemplateBinding Intensity,Converter={StaticResource ITLM}}" />
+                            <!--背景中央-->
+                            <Border Background="{TemplateBinding Background}" 
+                                    CornerRadius="{TemplateBinding Radius,Converter={StaticResource VTR}}"
+                                    Margin="{TemplateBinding Intensity,Converter={StaticResource ITM}}" />
+                            <!--裁切区域-->
+                            <Grid.Clip>
+                                <MultiBinding Converter="{StaticResource CCG}" Mode="OneWay"
+                                              ConverterParameter="4">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="Radius" Mode="OneWay" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ActualWidth" Mode="OneWay" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ActualHeight" Mode="OneWay" />
+                                </MultiBinding>
+                            </Grid.Clip>
+                            <Grid.Effect>
+                                <BlurEffect
+                                    Radius="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                    Path=Intensity,Converter={StaticResource ITB},Mode=OneWay}" />
+                            </Grid.Effect>
+                        </Grid>
+                        <!-- 显示边框和内容 -->
+                        <Border CornerRadius="{TemplateBinding Radius,Converter={StaticResource VTR}}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" Margin="4">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </Border>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

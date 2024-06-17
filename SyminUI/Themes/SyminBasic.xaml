@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Decorations/EmbossBorder.xaml"/>
+        <ResourceDictionary Source="Decorations/SlotBorder.xaml"/>
+        <ResourceDictionary Source="Decorations/LightedSurface.xaml"/>
+        <ResourceDictionary Source="Primitives/CommonGeometry.xaml"/>
+        <ResourceDictionary Source="Primitives/RepeatButtonTransparent.xaml"/>
+        <ResourceDictionary Source="Primitives/FlattenButton.xaml"/>
+        <ResourceDictionary Source="Primitives/FlattenComboBox.xaml"/>
+        <ResourceDictionary Source="Primitives/FlattenTextBox.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

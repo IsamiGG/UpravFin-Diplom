@@ -1,0 +1,78 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UpravFin.Pages"
+      xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="UpravFin.Pages.PageAdm"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAdm" Loaded="Page_Loaded">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="237*"/>
+            <ColumnDefinition Width="348*"/>
+            <ColumnDefinition Width="215*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <StackPanel Height="220">
+                <Calendar Height="239" Margin="0" Name="DateLK" SelectedDatesChanged="DateLK_SelectedDatesChanged"/>
+            </StackPanel>
+            <StackPanel Height="220">
+                <Label Content="ЗАМЕТКИ" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14" Background="#FF326CF3" Foreground="White" Margin="20,0,19,0" Height="41"/>
+                <TextBox Text="{Binding Zametki}" Height="180" FontFamily="Segoe UI" Margin="20,0,19,0" Name="ZametkiLK"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <StackPanel Height="313" Orientation="Vertical">
+                <Label Content="Добро пожаловать, &#xA;Куликова Наталья Виниаминовна!" Height="75" Width="320" FontSize="17" TextBlock.TextAlignment="Center" FontFamily="Segue UI" FontWeight="Bold"/>
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Height="102" Margin="14,0" Click="Button_Click_1" Width="320">
+                    <Image Source="..\img\work.png" Height="98"/>
+                </Button>
+                <Label Content="Для продолжения работы &#xA;используйте &#xA;панель с кнопками сверху.&#xA; Удачного дня!" Height="119" Width="320" FontSize="19" TextBlock.TextAlignment="Center" FontFamily="Segoe UI" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Height="127">
+                <hc:FlipClock Height="126" HorizontalAlignment="Center" VerticalAlignment="Center" Width="348" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <StackPanel Height="450" Orientation="Vertical">
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <Label Content="СПИСОК ДЕЛ" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center" Width="242" Height="50" FontSize="15" FontWeight="Bold" Background="#FF326CF3" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo1" Text="{Binding Delo1}"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo2" Text="{Binding Delo2}"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo3" Text="{Binding Delo3}"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo4" Text="{Binding Delo4}"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo5" Text="{Binding Delo5}"/>
+                </StackPanel>
+                <StackPanel Height="10"/>
+                <StackPanel Height="50" Orientation="Horizontal">
+                    <CheckBox Margin="0,17" Width="30"/>
+                    <TextBox Width="210" FontFamily="Segoe UI" Name="Delo6" Text="{Binding Delo6}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

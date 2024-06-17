@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <Version>1.1.1</Version>
+	  <PackageVersion>1.1.1</PackageVersion>
+	  <Company>SyminStudio</Company>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <Authors>Symin</Authors>
+	  <Copyright>Copyright (c) 2022 SyminStudio</Copyright>
+	  <RepositoryUrl>https://github.com/syminomega/SyminUI</RepositoryUrl>
+	  <PackageTags>WPF;Theme;Controls</PackageTags>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	  <PackageReleaseNotes>Modify the property implementation of ElementViewBase. Now you can ignore the property order while initializing.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Shaders\LightedSurfacePS.ps" />
+    <None Remove="Convertor\Effect\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Shaders\LightedSurfacePS.ps" />
+    <None Remove="Shaders\BrightnessContrastPS.ps" />
+    <Resource Include="Shaders\BrightnessContrastPS.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SyminData\SyminData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Convertor\Effect\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Convertor\Effect\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Convertor\Effect\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Shaders\BrightnessContrastPS.hlsl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="&quot;$(ProjectDir)Resources\Tools\EffectShaderCompiler.exe&quot; -i &quot;$(ProjectDir)Shaders&quot; -o &quot;$(ProjectDir)Shaders&quot;" />
+  </Target>
+
+</Project>
